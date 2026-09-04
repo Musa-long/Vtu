@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quicktopup Communication</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <b>Quicktopup Communication</b>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="admin.html">Admin</a>
+    <button id="logoutBtn" class="linkbtn hidden" onclick="logout()">Logout</button>
+  </nav>
+</header>
+<main>
+  <section class="hero">
+    <span>QUICKTOPUP VTU</span>
+    <h1>Recharge, fund your wallet and track every transaction.</h1>
+    <p>MTN, Glo, Airtel and 9mobile.</p>
+    <div id="welcome" class="hero-actions"></div>
+  </section>
+
+  <section id="authPanel" class="auth-grid">
+    <div class="panel">
+      <h2>Create account</h2>
+      <form onsubmit="register(event)">
+        <label>Full name<input id="regName" required maxlength="80"></label>
+        <label>Phone number<input id="regPhone" required type="tel" placeholder="08012345678"></label>
+        <label>Email<input id="regEmail" required type="email"></label>
+        <label>Password<input id="regPassword" required type="password" minlength="6"></label>
+        <button>Create Account</button>
+      </form>
+      <p id="regMsg" class="msg"></p>
+    </div>
+    <div class="panel">
+      <h2>Customer login</h2>
+      <form onsubmit="login(event)">
+        <label>Email<input id="loginEmail" required type="email"></label>
+        <label>Password<input id="loginPassword" required type="password"></label>
+        <button>Login</button>
+      </form>
+      <p id="loginMsg" class="msg"></p>
+    </div>
+  </section>
+
+  <section id="appPanel" class="hidden">
+    <div class="dashboard-grid">
+      <div class="stat"><span>Wallet Balance</span><strong id="balance">₦0</strong></div>
+      <div class="stat"><span>Total Transactions</span><strong id="txCount">0</strong></div>
+      <div class="stat"><span>Account</span><strong id="customerName">—</strong></div>
+    </div>
+
+    <section class="cards">
+      <div><h2>Buy Airtime</h2><p>Recharge any supported network from your wallet.</p><button onclick="showOrder('Airtime')">Buy Airtime</button></div>
+      <div><h2>Buy Data</h2><p>Choose your network and data amount.</p><button onclick="showOrder('Data')">Buy Data</button></div>
+      <div><h2>Fund Wallet</h2><p>Minimum deposit: <strong id="min">₦1,000</strong></p><button onclick="deposit()">Fund Wallet</button></div>
+    </section>
+
+    <section id="order" class="panel hidden">
+      <h2 id="title"></h2>
+      <form onsubmit="submitOrder(event)">
+        <label>Network<select id="network"><option>MTN</option><option>Glo</option><option>Airtel</option><option>9mobile</option></select></label>
+        <label>Phone number<input id="orderPhone" required type="tel" placeholder="08012345678"></label>
+        <label>Amount (₦)<input id="amount" required type="number" min="1" step="1" placeholder="1000"></label>
+        <button>Place Order</button>
+      </form>
+      <p id="orderMsg" class="msg"></p>
+    </section>
+
+    <section id="dep" class="panel hidden">
+      <h2>Fund Wallet</h2>
+      <p>Transfer to the business account below, then submit your deposit reference.</p>
+      <div class="bankbox">
+        <p><b>Bank:</b> <span id="bankName"></span></p>
+        <p><b>Account Name:</b> <span id="accountName"></span></p>
+        <p><b>Account Number:</b> <span id="accountNumber"></span></p>
+        <p><b>Minimum Deposit:</b> <span id="minimumDeposit"></span></p>
+      </div>
+      <form onsubmit="submitDeposit(event)">
+        <label>Amount (₦)<input id="depositAmount" required type="number" min="1" step="1"></label>
+        <label>Transfer Reference<input id="depositRef" required maxlength="100"></label>
+        <button>Submit Deposit Request</button>
+      </form>
+      <p id="depMsg" class="msg"></p>
+    </section>
+
+    <section class="panel">
+      <div class="section-head"><h2>Transaction History</h2><button class="secondary" onclick="renderTransactions()">Refresh</button></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Date</th><th>Type</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead>
+        <tbody id="transactions"></tbody></table>
+      </div>
+    </section>
+  </section>
+</main>
+<footer>© 2026 Quicktopup Communication · 09167452777</footer>
+<script src="app.js"></script>
+</body></html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quicktopup Admin</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><b>Quicktopup Communication — Admin</b><nav><a href="index.html">Customer Site</a></nav></header>
+<main>
+<section id="adminLogin" class="panel narrow">
+<h2>Admin Login</h2><p>Demo admin account: <b>admin@quicktopup.local</b> / <b>admin123</b></p>
+<form onsubmit="adminLogin(event)"><label>Email<input id="adminEmail" type="email" required></label><label>Password<input id="adminPassword" type="password" required></label><button>Login</button></form>
+<p id="adminLoginMsg" class="msg"></p>
+</section>
+
+<section id="adminApp" class="hidden">
+<section class="hero"><span>ADMIN DASHBOARD</span><h1>Manage customers, wallets and transactions.</h1><p>Review deposit requests and control customer pricing.</p></section>
+
+<section class="dashboard-grid">
+<div class="stat"><span>Customers</span><strong id="statCustomers">0</strong></div>
+<div class="stat"><span>Pending Deposits</span><strong id="statPending">0</strong></div>
+<div class="stat"><span>Transactions</span><strong id="statTx">0</strong></div>
+</section>
+
+<section class="panel"><h2>Deposit Settings</h2>
+<label>Bank Name<input id="bank" value="Sterling Bank"></label>
+<label>Account Name<input id="acct" value="MFY/DATA 247 COMMUNICATION LTD-wad"></label>
+<label>Account Number<input id="num" value="8387778364"></label>
+<label>Minimum Deposit (₦)<input id="minimum" type="number" value="1000"></label>
+<button onclick="saveSettings()">Save Settings</button><p id="saved" class="msg"></p>
+</section>
+
+<section class="panel"><h2>Customer Selling Prices</h2><div id="products"></div></section>
+
+<section class="panel"><div class="section-head"><h2>Customers</h2><button class="secondary" onclick="renderAdmin()">Refresh</button></div>
+<div class="table-wrap"><table><thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Wallet</th><th>Status</th></tr></thead><tbody id="customers"></tbody></table></div>
+</section>
+
+<section class="panel"><div class="section-head"><h2>Deposit Requests</h2><button class="secondary" onclick="renderAdmin()">Refresh</button></div>
+<div class="table-wrap"><table><thead><tr><th>Date</th><th>Customer</th><th>Amount</th><th>Reference</th><th>Status</th><th>Action</th></tr></thead><tbody id="deposits"></tbody></table></div>
+</section>
+
+<section class="panel"><div class="section-head"><h2>All Transactions</h2></div>
+<div class="table-wrap"><table><thead><tr><th>Date</th><th>Customer</th><th>Type</th><th>Description</th><th>Amount</th><th>Status</th></tr></thead><tbody id="allTx"></tbody></table></div>
+</section>
+
+<button class="danger" onclick="adminLogout()">Admin Logout</button>
+</section>
+</main>
+<script src="admin.js"></script>
+</body></html>
